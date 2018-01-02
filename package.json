@@ -1,0 +1,22 @@
+{
+  "name": "react_indicision",
+  "version": "1.0.0",
+  "description": "Simple react exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HenryGarmendia/react_indicision.git"
+  },
+  "author": "Henry Garmendia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HenryGarmendia/react_indicision/issues"
+  },
+  "homepage": "https://github.com/HenryGarmendia/react_indicision#readme",
+  "dependencies": {
+    "babel-preset-react": "^6.24.1"
+  }
+}
