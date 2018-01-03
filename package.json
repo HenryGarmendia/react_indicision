@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/HenryGarmendia/react_indicision#readme",
   "dependencies": {
+    "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1"
   }
 }

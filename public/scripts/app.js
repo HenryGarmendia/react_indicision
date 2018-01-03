@@ -1,13 +1,11 @@
 "use strict";
 
 // JSX - JavaScript XML
-// var template = <p>This is a JSX from app.js...</p>;
-
 
 var template = React.createElement(
-  "p",
+  "h1",
   null,
-  "This is a JSX from app.js..."
+  "Indecision Web-App"
 );
 var app_roor = document.getElementById('app');
 
