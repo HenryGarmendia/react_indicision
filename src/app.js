@@ -4,7 +4,7 @@
 const app = {
     title: 'Indecision Web-App',
     subtitle: 'Put your life decision in the logic of a computer.',
-    options: ['One', 'Two', 'Three', 'Four']
+    options: ['One', 'Two', 'Three']
 };
 const template = (
     <div>
