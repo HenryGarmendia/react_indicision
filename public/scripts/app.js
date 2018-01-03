@@ -3,9 +3,18 @@
 // JSX - JavaScript XML
 
 var template = React.createElement(
-  "h1",
-  null,
-  "Indecision Web-App"
+    "div",
+    null,
+    React.createElement(
+        "h1",
+        null,
+        "Indecision Web-App"
+    ),
+    React.createElement(
+        "p",
+        null,
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+    )
 );
 var app_roor = document.getElementById('app');
 
