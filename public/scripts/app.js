@@ -16,6 +16,6 @@ var template = React.createElement(
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
     )
 );
-var app_roor = document.getElementById('app');
+var app_roor = document.getElementById('react_container');
 
 ReactDOM.render(template, app_roor);
