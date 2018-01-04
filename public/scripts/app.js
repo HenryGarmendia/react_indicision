@@ -17,12 +17,12 @@ var on_form_submit = function on_form_submit(e) {
         e.target.elements.options.value = '';
         render_options();
     }
-};
+}; // on_form_submit END
 
 var on_remove_all = function on_remove_all() {
     app.options = [];
     render_options();
-};
+}; // on_remove_all END
 
 var app_root = document.getElementById('react_container');
 
@@ -58,21 +58,13 @@ var render_options = function render_options() {
         React.createElement(
             'ol',
             null,
-            React.createElement(
-                'li',
-                null,
-                'List item 1'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'List item 2'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'List item 3'
-            )
+            app.options.map(function (option, index) {
+                return React.createElement(
+                    'li',
+                    { key: index },
+                    option
+                );
+            })
         ),
         React.createElement(
             'form',
@@ -87,6 +79,6 @@ var render_options = function render_options() {
     );
 
     ReactDOM.render(template, app_root);
-};
+}; // render_options end
 
 render_options();
