@@ -29,3 +29,14 @@ function get_animal() {
 
 var animal_name = get_animal(); // but if we assign this function call to a variable it will work
 console.log(animal_name); // variable not accessible
+
+// var variable are functions scope  
+var full_name = 'Henry Garmendia';
+var first_name = void 0;
+
+if (full_name) {
+    first_name = full_name.split(' ')[0];
+    console.log('first_name', first_name);
+}
+
+console.log('first_name', first_name);

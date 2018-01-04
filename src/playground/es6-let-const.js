@@ -27,3 +27,14 @@ function get_animal() {
 
 const animal_name = get_animal(); // but if we assign this function call to a variable it will work
 console.log(animal_name); // variable not accessible
+
+// var variable are functions scope  
+const full_name = 'Henry Garmendia';
+let first_name;
+
+if (full_name) {
+    first_name = full_name.split(' ')[0];
+    console.log('first_name', first_name);
+}
+
+console.log('first_name', first_name);
