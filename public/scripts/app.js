@@ -48,46 +48,53 @@ var template = React.createElement(
 
 var count = 0;
 var add_one = function add_one() {
-    console.log('Adding One');
+    count++;
+    render_counter_app();
 };
 
 var minus_one = function minus_one() {
-    console.log('Minus One');
+    count--;
+    render_counter_app();
 };
 
 var reset = function reset() {
-    console.log('Reset button');
+    count = 0;
+    render_counter_app();
 };
 
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'Count: ',
-        count
-    ),
-    React.createElement(
-        'button',
-        { onClick: add_one },
-        React.createElement('i', { className: 'fa fa-plus', 'aria-hidden': 'true' }),
-        ' 1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: minus_one },
-        React.createElement('i', { className: 'fa fa-minus', 'aria-hidden': 'true' }),
-        ' 1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: reset },
-        React.createElement('i', { className: 'fa fa-refresh', 'aria-hidden': 'true' }),
-        ' Reset'
-    )
-);
-
-console.log(templateTwo);
 var app_roor = document.getElementById('react_container');
-ReactDOM.render(templateTwo, app_roor);
+
+var render_counter_app = function render_counter_app() {
+    var templateTwo = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Count: ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: add_one },
+            React.createElement('i', { className: 'fa fa-plus', 'aria-hidden': 'true' }),
+            ' 1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: minus_one },
+            React.createElement('i', { className: 'fa fa-minus', 'aria-hidden': 'true' }),
+            ' 1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            React.createElement('i', { className: 'fa fa-refresh', 'aria-hidden': 'true' }),
+            ' Reset'
+        )
+    );
+
+    ReactDOM.render(templateTwo, app_roor);
+};
+
+render_counter_app();
