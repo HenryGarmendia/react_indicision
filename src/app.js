@@ -23,6 +23,12 @@ const on_remove_all = () => {
     render_options();
 }; // on_remove_all END
 
+const on_make_decision = () => {
+    const random_num = Math.floor(Math.random() * app.options.length);
+    const option = app.options[random_num];
+    console.log(option);
+}; // on_make_decision END 
+
 const app_root = document.getElementById('react_container');
 
 const render_options = () => {
@@ -31,7 +37,7 @@ const render_options = () => {
             <h1>{app.title}</h1>
             {app.subtitle && <p>{app.subtitle}</p>}
             <p>{(app.options && app.options.length > 0) ? 'Here are your options' : 'No options'}</p>
-            <p>{app.options.length}</p>
+            <button disabled={app.options.length === 0} onClick={on_make_decision}>What should I do?</button>
             {(app.options.length > 0) ? <button onClick={on_remove_all}>Remove All</button> : null }
             <ol>
                 {app.options.map((option, index) => {
