@@ -1,68 +1,93 @@
-'use strict';
+"use strict";
 
-/* 
-    An arrow function expression has a shorter syntax than a function expression and does not have its own this, arguments, super, or new.target. 
-*/
-// if is an arrow function and only returns one expression you can do in one line e.g. const square = (x) =>  x * x;
-var square = function square(x) {
-    return x * x;
+// JSX - JavaScript XML
+
+var app = {
+    title: 'Indecision Web-App',
+    subtitle: 'Put your life decision in the logic of a computer.',
+    options: ['One', 'Two', 'Three']
+};
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        app.title
+    ),
+    app.subtitle && React.createElement(
+        'p',
+        null,
+        app.subtitle
+    ),
+    React.createElement(
+        'p',
+        null,
+        app.options && app.options.length > 0 ? 'Here are your options' : 'No options'
+    ),
+    React.createElement(
+        'ol',
+        null,
+        React.createElement(
+            'li',
+            null,
+            'List item 1'
+        ),
+        React.createElement(
+            'li',
+            null,
+            'List item 2'
+        ),
+        React.createElement(
+            'li',
+            null,
+            'List item 3'
+        )
+    )
+);
+
+var count = 0;
+var add_one = function add_one() {
+    console.log('Adding One');
 };
 
-console.log(square(9));
-
-// normal arrow function
-var get_first_name = function get_first_name(full_name) {
-    return full_name.split(' ')[0];
-};
-console.log(get_first_name('Henry Garmendia'));
-
-// shorthand arrow function
-var get_first_name2 = function get_first_name2(full_name) {
-    return full_name.split(' ')[0];
-};
-console.log(get_first_name2('Henry Garmendia'));
-
-// arguments object - no longer bound with arrow functions
-// The arguments object is an Array-like object corresponding to the arguments passed to a function.
-var add = function add(a, b) {
-    // console.log(arguments);
-    return a + b;
+var minus_one = function minus_one() {
+    console.log('Minus One');
 };
 
-console.log(add(10, 1));
-
-// this keyword - no longer bound
-var user = {
-    name: 'Hendogg',
-    cities: ['San Francisco', 'Oakland', 'New York', 'San Leandro', 'Dallas', 'Forney'],
-    placesLived: function placesLived() {
-        var _this = this;
-
-        // don't wanna use arrow function in a method
-        console.log(this.name);
-        console.log(this.cities);
-        // const that = this; // // don't need to create the const with arrow function
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        }); // better option
-        // this.cities.forEach((city) => {
-        //     console.log(`${this.name} has lived in ${city}`);
-        // });
-    }
-};
-user.placesLived();
-console.table(user.placesLived());
-
-var multiplier = {
-    numbers: [1, 2, 3, 4],
-    multiply_by: 2,
-    multiply: function multiply() {
-        var _this2 = this;
-
-        return this.numbers.map(function (number) {
-            return _this2.multiply_by * number;
-        });
-    }
+var reset = function reset() {
+    console.log('Reset button');
 };
 
-console.table(multiplier.multiply());
+var templateTwo = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        'Count: ',
+        count
+    ),
+    React.createElement(
+        'button',
+        { onClick: add_one },
+        React.createElement('i', { className: 'fa fa-plus', 'aria-hidden': 'true' }),
+        ' 1'
+    ),
+    React.createElement(
+        'button',
+        { onClick: minus_one },
+        React.createElement('i', { className: 'fa fa-minus', 'aria-hidden': 'true' }),
+        ' 1'
+    ),
+    React.createElement(
+        'button',
+        { onClick: reset },
+        React.createElement('i', { className: 'fa fa-refresh', 'aria-hidden': 'true' }),
+        ' Reset'
+    )
+);
+
+console.log(templateTwo);
+var app_roor = document.getElementById('react_container');
+ReactDOM.render(templateTwo, app_roor);
