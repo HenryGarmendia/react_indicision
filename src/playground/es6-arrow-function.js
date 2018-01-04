@@ -20,8 +20,8 @@ console.log(get_first_name2('Henry Garmendia'));
 
 // arguments object - no longer bound with arrow functions
 // The arguments object is an Array-like object corresponding to the arguments passed to a function.
-const add = function(a, b) {
-    console.log(arguments);
+const add = (a, b) => {
+    // console.log(arguments);
     return a + b;
 };
 

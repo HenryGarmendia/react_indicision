@@ -25,7 +25,7 @@ console.log(get_first_name2('Henry Garmendia'));
 // arguments object - no longer bound with arrow functions
 // The arguments object is an Array-like object corresponding to the arguments passed to a function.
 var add = function add(a, b) {
-    console.log(arguments);
+    // console.log(arguments);
     return a + b;
 };
 
