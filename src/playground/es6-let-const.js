@@ -17,3 +17,13 @@ console.log('nameLet', nameLet);
 */
 const nameConst = 'Garmendia';
 console.log('nameConst', nameConst);
+
+// e.g.
+function get_animal() {
+    const animal_name = 'Bear';
+
+    return animal_name;
+};
+
+const animal_name = get_animal(); // but if we assign this function call to a variable it will work
+console.log(animal_name); // variable not accessible
