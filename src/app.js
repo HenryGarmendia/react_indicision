@@ -19,4 +19,6 @@ const template = (
     </div>
 );
 
-const app_roor = document.getElementById('react_container');
+const app_root = document.getElementById('react_container');
+
+ReactDOM.render(template, app_root);

@@ -46,4 +46,6 @@ var template = React.createElement(
     )
 );
 
-var app_roor = document.getElementById('react_container');
+var app_root = document.getElementById('react_container');
+
+ReactDOM.render(template, app_root);
