@@ -1,84 +1,21 @@
-"use strict";
+'use strict';
 
-// JSX - JavaScript XML
+// ES5 the thing of the pass
+var nameVar = 'Henry';
+nameVar = 'Alejandro';
+console.log('nameVar', nameVar);
 
-var app = {
-    title: 'Indecision Web-App',
-    subtitle: 'Put your life decision in the logic of a computer.',
-    options: ['One', 'Two', 'Three', 'Four']
-};
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        app.title
-    ),
-    app.subtitle && React.createElement(
-        'p',
-        null,
-        app.subtitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        app.options && app.options.length > 0 ? 'Here are your options' : 'No options'
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            'List item 1'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'List item 2'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'List item 3'
-        )
-    )
-);
+// ES6 can't redefine the "let" variable, you can reassign.
+/* 
+    The let statement declares a block scope local variable, optionally initializing it to a value. 
+*/
+var nameLet = 'Jane';
+nameLet = 'Julie';
+console.log('nameLet', nameLet);
 
-var user = {
-    name: 'Henry',
-    age: 37,
-    location: 'Forney'
-};
-
-var get_location = function get_location(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            'Location: ',
-            location
-        );
-    }
-};
-
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        user.name ? user.name : 'Anonymous'
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
-    ),
-    get_location(user.location)
-);
-
-var app_roor = document.getElementById('react_container');
-ReactDOM.render(template, app_roor);
+/* 
+    Constants are block-scoped, much like variables defined using the let statement. 
+    The value of a constant cannot change through re-assignment, and it can't be redeclare. 
+*/
+var nameConst = 'Garmendia';
+console.log('nameConst', nameConst);
