@@ -26,7 +26,7 @@ var Person = function () {
     _createClass(Person, [{
         key: 'greetings',
         value: function greetings() {
-            return 'Hello. I am ' + this.name + '!';
+            return 'Hello. I am \uD83D\uDE0E ' + this.name + '!';
         }
     }, {
         key: 'description',
@@ -66,7 +66,7 @@ var Student = function (_Person) {
             var parent_description = _get(Student.prototype.__proto__ || Object.getPrototypeOf(Student.prototype), 'description', this).call(this);
 
             if (this.has_major()) {
-                parent_description += ' Their major is ' + this.major;
+                parent_description += ' Their major is ' + this.major + ' \uD83D\uDC68\u200D\uD83C\uDF93';
             }
 
             return parent_description;
@@ -78,8 +78,42 @@ var Student = function (_Person) {
 
 ;
 
-var me = new Student('Henry Garmendia', 37, 'Computer Science');
-console.log(me.description());
+var Traveller = function (_Person2) {
+    _inherits(Traveller, _Person2);
+
+    function Traveller(name, age, location) {
+        _classCallCheck(this, Traveller);
+
+        var _this2 = _possibleConstructorReturn(this, (Traveller.__proto__ || Object.getPrototypeOf(Traveller)).call(this, name, age));
+
+        _this2.location = location;
+        return _this2;
+    }
+
+    // has_location() {
+    //     return !!this.location;
+    // }
+
+    _createClass(Traveller, [{
+        key: 'greetings',
+        value: function greetings() {
+            var parent_greetings = _get(Traveller.prototype.__proto__ || Object.getPrototypeOf(Traveller.prototype), 'greetings', this).call(this);
+
+            if (this.location) {
+                parent_greetings += ' I am from ' + this.location + ' \u26F5';
+            }
+
+            return parent_greetings;
+        }
+    }]);
+
+    return Traveller;
+}(Person);
+
+;
+
+var me = new Traveller('Henry Garmendia', 37, 'San Francisco');
+console.log(me.greetings());
 
 var him = new Student();
-console.log(him.description());
+console.log(him.greetings());
