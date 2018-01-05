@@ -1,90 +1,59 @@
-"use strict";
+'use strict';
 
-// JSX - JavaScript XML
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var app = {
-    title: 'Indecision Web-App',
-    subtitle: 'Put your life decision in the logic of a computer.',
-    options: []
-};
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-var on_form_submit = function on_form_submit(e) {
-    e.preventDefault();
-    var option = e.currentTarget.options.value;
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    if (option) {
-        app.options.push(option);
-        e.target.elements.options.value = '';
-        render_options();
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+console.log('es6-classes-1.js is working');
+
+var Person = function () {
+    function Person() {
+        var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Anonymous';
+        var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+        _classCallCheck(this, Person);
+
+        this.name = name;
+        this.age = age;
     }
-}; // on_form_submit END
 
-var on_remove_all = function on_remove_all() {
-    app.options = [];
-    render_options();
-}; // on_remove_all END
+    _createClass(Person, [{
+        key: 'greetings',
+        value: function greetings() {
+            return 'Hello. I am ' + this.name + '!';
+        }
+    }, {
+        key: 'description',
+        value: function description() {
+            return '\uD83D\uDE0E ' + this.name + ' is ' + this.age + ' year(s) \uD83D\uDC74.';
+        }
+    }]);
 
-var on_make_decision = function on_make_decision() {
-    var random_num = Math.floor(Math.random() * app.options.length);
-    var option = app.options[random_num];
-    console.log(option);
-}; // on_make_decision END 
+    return Person;
+}();
 
-var app_root = document.getElementById('react_container');
+;
 
-var render_options = function render_options() {
-    var template = React.createElement(
-        'div',
-        null,
-        React.createElement(
-            'h1',
-            null,
-            app.title
-        ),
-        app.subtitle && React.createElement(
-            'p',
-            null,
-            app.subtitle
-        ),
-        React.createElement(
-            'p',
-            null,
-            app.options && app.options.length > 0 ? 'Here are your options' : 'No options'
-        ),
-        React.createElement(
-            'button',
-            { disabled: app.options.length === 0, onClick: on_make_decision },
-            'What should I do?'
-        ),
-        app.options.length > 0 ? React.createElement(
-            'button',
-            { onClick: on_remove_all },
-            'Remove All'
-        ) : null,
-        React.createElement(
-            'ol',
-            null,
-            app.options.map(function (option, index) {
-                return React.createElement(
-                    'li',
-                    { key: index },
-                    option
-                );
-            })
-        ),
-        React.createElement(
-            'form',
-            { onSubmit: on_form_submit },
-            React.createElement('input', { type: 'text', name: 'options', placeholder: 'e.g. Better at JavaScript' }),
-            React.createElement(
-                'button',
-                null,
-                'Add Option'
-            )
-        )
-    );
+var Student = function (_Person) {
+    _inherits(Student, _Person);
 
-    ReactDOM.render(template, app_root);
-}; // render_options end
+    function Student() {
+        _classCallCheck(this, Student);
 
-render_options();
+        return _possibleConstructorReturn(this, (Student.__proto__ || Object.getPrototypeOf(Student)).apply(this, arguments));
+    }
+
+    return Student;
+}(Person);
+
+;
+
+var me = new Student('Henry Garmendia', 37);
+console.log(me.description());
+
+var him = new Student();
+console.log(him.description());
