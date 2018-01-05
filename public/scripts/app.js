@@ -1,5 +1,7 @@
 'use strict';
 
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -41,18 +43,42 @@ var Person = function () {
 var Student = function (_Person) {
     _inherits(Student, _Person);
 
-    function Student() {
+    function Student(name, age, major) {
         _classCallCheck(this, Student);
 
-        return _possibleConstructorReturn(this, (Student.__proto__ || Object.getPrototypeOf(Student)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Student.__proto__ || Object.getPrototypeOf(Student)).call(this, name, age));
+        // call the parent constructor and passing the data true
+
+
+        _this.major = major;
+        return _this;
     }
+
+    _createClass(Student, [{
+        key: 'has_major',
+        value: function has_major() {
+            return !!this.major;
+        }
+    }, {
+        key: 'description',
+        value: function description() {
+            // call the parent method
+            var parent_description = _get(Student.prototype.__proto__ || Object.getPrototypeOf(Student.prototype), 'description', this).call(this);
+
+            if (this.has_major()) {
+                parent_description += ' Their major is ' + this.major;
+            }
+
+            return parent_description;
+        }
+    }]);
 
     return Student;
 }(Person);
 
 ;
 
-var me = new Student('Henry Garmendia', 37);
+var me = new Student('Henry Garmendia', 37, 'Computer Science');
 console.log(me.description());
 
 var him = new Student();
