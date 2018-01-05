@@ -22,15 +22,16 @@ var IndecisionWebApp = function (_React$Component) {
     _createClass(IndecisionWebApp, [{
         key: 'render',
         value: function render() {
-            var app_name = 'Indecision Web-App';
+            var app_title = 'Indecision Web-App';
             var app_sub_title = 'Put your life decision in the logic of a computer.';
+            var options = ['First Item', 'Second Item', 'Third Item', 'Fourth Item'];
 
             return React.createElement(
                 'div',
                 null,
-                React.createElement(Header, { title: app_name, sub_title: app_sub_title }),
+                React.createElement(Header, { title: app_title, sub_title: app_sub_title }),
                 React.createElement(Action, null),
-                React.createElement(Options, null),
+                React.createElement(Options, { options: options }),
                 React.createElement(AddOptions, null)
             );
         }
@@ -51,7 +52,6 @@ var Header = function (_React$Component2) {
     _createClass(Header, [{
         key: 'render',
         value: function render() {
-            console.log(this.props);
             return React.createElement(
                 'div',
                 null,
@@ -82,6 +82,11 @@ var Action = function (_React$Component3) {
     }
 
     _createClass(Action, [{
+        key: 'method_pick',
+        value: function method_pick() {
+            console.log('method_pick');
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
@@ -89,7 +94,7 @@ var Action = function (_React$Component3) {
                 null,
                 React.createElement(
                     'button',
-                    null,
+                    { onClick: this.method_pick },
                     'What should I do?'
                 )
             );
@@ -109,17 +114,24 @@ var Options = function (_React$Component4) {
     }
 
     _createClass(Options, [{
+        key: 'method_remove_all',
+        value: function method_remove_all() {
+            console.log('method_remove_all');
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
                 'div',
                 null,
                 React.createElement(
-                    'p',
-                    null,
-                    'Options Component Here...'
+                    'button',
+                    { onClick: this.method_remove_all },
+                    'Remove All'
                 ),
-                React.createElement(Option, null)
+                this.props.options.map(function (option) {
+                    return React.createElement(Option, { key: option, option_text: option });
+                })
             );
         }
     }]);
@@ -145,7 +157,8 @@ var Option = function (_React$Component5) {
                 React.createElement(
                     'p',
                     null,
-                    'Option Nested Component Here...'
+                    'Options: ',
+                    this.props.option_text
                 )
             );
         }

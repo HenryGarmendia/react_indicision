@@ -3,14 +3,15 @@ console.log('app.js is running live!');
 
 class IndecisionWebApp extends React.Component {
     render () {
-        const app_name = 'Indecision Web-App';
+        const app_title = 'Indecision Web-App';
         const app_sub_title = 'Put your life decision in the logic of a computer.';
+        const options = ['First Item', 'Second Item', 'Third Item', 'Fourth Item'];
 
         return (
             <div>
-                <Header title={app_name} sub_title={app_sub_title}/>
+                <Header title={app_title} sub_title={app_sub_title}/>
                 <Action />
-                <Options />
+                <Options options={options}/>
                 <AddOptions />
             </div>
         );
@@ -19,7 +20,6 @@ class IndecisionWebApp extends React.Component {
 
 class Header extends React.Component {
     render () {
-        console.log(this.props);
         return (
             <div>
                 <h1>{this.props.title}</h1>
@@ -30,21 +30,29 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+    method_pick() {
+        console.log('method_pick');
+    }
     render () {
         return (
             <div>
-                <button>What should I do?</button>
+                <button onClick={this.method_pick}>What should I do?</button>
 			</div>
         );
     }
 }
 
 class Options extends React.Component {
+    method_remove_all() {
+        console.log('method_remove_all');
+    }
     render() {
         return (
             <div>
-                <p>Options Component Here...</p>
-                <Option />
+            <button onClick={this.method_remove_all}>Remove All</button>
+                {
+                    this.props.options.map((option) => <Option key={option} option_text={option}/>)
+                }
             </div>
         );
     }
@@ -54,7 +62,7 @@ class Option extends React.Component {
     render () {
         return (
             <div>
-                <p>Option Nested Component Here...</p>
+                <p>Options: {this.props.option_text}</p>
             </div>
         );
     }
