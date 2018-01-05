@@ -33,6 +33,7 @@ class Action extends React.Component {
     method_pick() {
         console.log('method_pick');
     }
+
     render () {
         return (
             <div>
@@ -43,9 +44,15 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+    constructor(props) {
+        super(props);
+        this.method_remove_all = this.method_remove_all.bind(this);
+    }// constructor END
+
     method_remove_all() {
-        console.log('method_remove_all');
-    }
+        console.log(this.props.options);
+    }// method_remove_all END
+
     render() {
         return (
             <div>
@@ -69,10 +76,23 @@ class Option extends React.Component {
 }
 
 class AddOptions extends React.Component {
+    method_add_options(e) {
+        e.preventDefault();
+        console.log(e);
+        const option = e.currentTarget.add_option.value.trim();
+
+        if (option) {
+            alert(option);
+        }
+    }
+    
     render () {
         return (
             <div>
-                <p>AddOptions Component Here...</p>
+                <form onSubmit={this.method_add_options}>
+                    <input type="text" name="add_option" placeholder="e.g. Learn JavaScript" />
+                    <button>Add Option</button>
+                </form>
             </div>
         );
     }

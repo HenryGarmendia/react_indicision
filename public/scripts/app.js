@@ -107,17 +107,21 @@ var Action = function (_React$Component3) {
 var Options = function (_React$Component4) {
     _inherits(Options, _React$Component4);
 
-    function Options() {
+    function Options(props) {
         _classCallCheck(this, Options);
 
-        return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
-    }
+        var _this4 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
+
+        _this4.method_remove_all = _this4.method_remove_all.bind(_this4);
+        return _this4;
+    } // constructor END
 
     _createClass(Options, [{
         key: 'method_remove_all',
         value: function method_remove_all() {
-            console.log('method_remove_all');
-        }
+            console.log(this.props.options);
+        } // method_remove_all END
+
     }, {
         key: 'render',
         value: function render() {
@@ -177,15 +181,31 @@ var AddOptions = function (_React$Component6) {
     }
 
     _createClass(AddOptions, [{
+        key: 'method_add_options',
+        value: function method_add_options(e) {
+            e.preventDefault();
+            console.log(e);
+            var option = e.currentTarget.add_option.value.trim();
+
+            if (option) {
+                alert(option);
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
                 'div',
                 null,
                 React.createElement(
-                    'p',
-                    null,
-                    'AddOptions Component Here...'
+                    'form',
+                    { onSubmit: this.method_add_options },
+                    React.createElement('input', { type: 'text', name: 'add_option', placeholder: 'e.g. Learn JavaScript' }),
+                    React.createElement(
+                        'button',
+                        null,
+                        'Add Option'
+                    )
                 )
             );
         }
