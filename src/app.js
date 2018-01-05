@@ -1,15 +1,29 @@
 "use strict";
 console.log('app.js is running live!');
 
-class Header extends React.Component {
+class IndecisionWebApp extends React.Component {
     render () {
+        const app_name = 'Indecision Web-App';
+        const app_sub_title = 'Put your life decision in the logic of a computer.';
+
         return (
             <div>
-                <h1>Indecision Web-App</h1>
-                <p>Put your life decision in the logic of a computer.</p>
+                <Header title={app_name} sub_title={app_sub_title}/>
                 <Action />
                 <Options />
                 <AddOptions />
+            </div>
+        );
+    }
+}
+
+class Header extends React.Component {
+    render () {
+        console.log(this.props);
+        return (
+            <div>
+                <h1>{this.props.title}</h1>
+                <p>{this.props.sub_title}</p>
             </div>
         );
     }
@@ -30,6 +44,17 @@ class Options extends React.Component {
         return (
             <div>
                 <p>Options Component Here...</p>
+                <Option />
+            </div>
+        );
+    }
+}
+
+class Option extends React.Component {
+    render () {
+        return (
+            <div>
+                <p>Option Nested Component Here...</p>
             </div>
         );
     }
@@ -45,4 +70,4 @@ class AddOptions extends React.Component {
     }
 }
 
-ReactDOM.render(<Header />, document.getElementById('react_container'));
+ReactDOM.render(<IndecisionWebApp />, document.getElementById('react_container'));
