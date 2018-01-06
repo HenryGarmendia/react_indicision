@@ -23,7 +23,7 @@ var IndecisionWebApp = function (_React$Component) {
         _this.method_add_options = _this.method_add_options.bind(_this);
 
         _this.state = {
-            options: []
+            options: props.options
         };
         return _this;
     }
@@ -61,13 +61,12 @@ var IndecisionWebApp = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var app_title = 'Indecision Web-App';
             var app_sub_title = 'Put your life decision in the logic of a computer.';
 
             return React.createElement(
                 'div',
                 null,
-                React.createElement(Header, { title: app_title, sub_title: app_sub_title }),
+                React.createElement(Header, { sub_title: app_sub_title }),
                 React.createElement(Action, { has_options: this.state.options.length > 0, method_pick: this.method_pick }),
                 React.createElement(Options, { options: this.state.options, method_delete_options: this.method_delete_options }),
                 React.createElement(AddOptions, { method_add_options: this.method_add_options })
@@ -78,137 +77,84 @@ var IndecisionWebApp = function (_React$Component) {
     return IndecisionWebApp;
 }(React.Component);
 
-var Header = function (_React$Component2) {
-    _inherits(Header, _React$Component2);
+IndecisionWebApp.defaultProps = {
+    options: []
+};
 
-    function Header() {
-        _classCallCheck(this, Header);
+var Header = function Header(props) {
+    return React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            props.app_title
+        ),
+        props.sub_title && React.createElement(
+            'p',
+            null,
+            props.sub_title
+        )
+    );
+};
 
-        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
-    }
+Header.defaultProps = {
+    app_title: 'Indecision Web-App'
+};
 
-    _createClass(Header, [{
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                null,
-                React.createElement(
-                    'h1',
-                    null,
-                    this.props.title
-                ),
-                React.createElement(
-                    'p',
-                    null,
-                    this.props.sub_title
-                )
-            );
-        }
-    }]);
+var Action = function Action(props) {
+    return React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'button',
+            { onClick: props.method_pick, disabled: !props.has_options },
+            'What should I do?'
+        )
+    );
+};
 
-    return Header;
-}(React.Component);
+var Options = function Options(props) {
+    return React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'button',
+            { onClick: props.method_delete_options },
+            'Remove All'
+        ),
+        props.options.map(function (option) {
+            return React.createElement(Option, { key: option, option_text: option });
+        })
+    );
+};
 
-var Action = function (_React$Component3) {
-    _inherits(Action, _React$Component3);
+var Option = function Option(props) {
+    return React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'p',
+            null,
+            props.option_text
+        )
+    );
+};
 
-    function Action() {
-        _classCallCheck(this, Action);
-
-        return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
-    }
-
-    _createClass(Action, [{
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                null,
-                React.createElement(
-                    'button',
-                    { onClick: this.props.method_pick, disabled: !this.props.has_options },
-                    'What should I do?'
-                )
-            );
-        }
-    }]);
-
-    return Action;
-}(React.Component);
-
-var Options = function (_React$Component4) {
-    _inherits(Options, _React$Component4);
-
-    function Options() {
-        _classCallCheck(this, Options);
-
-        return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
-    }
-
-    _createClass(Options, [{
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                null,
-                React.createElement(
-                    'button',
-                    { onClick: this.props.method_delete_options },
-                    'Remove All'
-                ),
-                this.props.options.map(function (option) {
-                    return React.createElement(Option, { key: option, option_text: option });
-                })
-            );
-        }
-    }]);
-
-    return Options;
-}(React.Component);
-
-var Option = function (_React$Component5) {
-    _inherits(Option, _React$Component5);
-
-    function Option() {
-        _classCallCheck(this, Option);
-
-        return _possibleConstructorReturn(this, (Option.__proto__ || Object.getPrototypeOf(Option)).apply(this, arguments));
-    }
-
-    _createClass(Option, [{
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                null,
-                React.createElement(
-                    'p',
-                    null,
-                    'Options: ',
-                    this.props.option_text
-                )
-            );
-        }
-    }]);
-
-    return Option;
-}(React.Component);
-
-var AddOptions = function (_React$Component6) {
-    _inherits(AddOptions, _React$Component6);
+var AddOptions = function (_React$Component2) {
+    _inherits(AddOptions, _React$Component2);
 
     function AddOptions(props) {
         _classCallCheck(this, AddOptions);
 
-        var _this6 = _possibleConstructorReturn(this, (AddOptions.__proto__ || Object.getPrototypeOf(AddOptions)).call(this, props));
+        var _this2 = _possibleConstructorReturn(this, (AddOptions.__proto__ || Object.getPrototypeOf(AddOptions)).call(this, props));
 
-        _this6.method_add_options = _this6.method_add_options.bind(_this6);
+        _this2.method_add_options = _this2.method_add_options.bind(_this2);
 
-        _this6.state = {
+        _this2.state = {
             error: undefined
         };
-        return _this6;
+        return _this2;
     }
 
     _createClass(AddOptions, [{
