@@ -7,9 +7,10 @@ class IndecisionWebApp extends React.Component {
 
         this.method_delete_options = this.method_delete_options.bind(this);
         this.method_pick = this.method_pick.bind(this);
+        this.method_add_options = this.method_add_options.bind(this);
 
         this.state = {
-            options: ['First Item', 'Second Item', 'Third Item', 'Fourth Item']
+            options: []
         }
     }
 
@@ -22,10 +23,21 @@ class IndecisionWebApp extends React.Component {
     }
 
     method_pick() {
+        const random_num = Math.floor(Math.random() * this.state.options.length);
+        const option = this.state.options[random_num]
+        alert(option);
+    }
+
+    method_add_options(option) {
+        if (!option) {
+            return 'Enter valid value to add item';
+        } else if (this.state.options.indexOf(option) > -1) {
+            return 'This option already exist';
+        }
         this.setState((prevState) => {
-            const random_num = Math.floor(Math.random() * prevState.options.length);
-            const options = prevState.options[random_num]
-            alert(options);
+            return {
+                options: prevState.options.concat(option)
+            };
         });
     }
 
@@ -38,7 +50,7 @@ class IndecisionWebApp extends React.Component {
                 <Header title={app_title} sub_title={app_sub_title} />
                 <Action has_options={this.state.options.length > 0} method_pick={this.method_pick} />
                 <Options options={this.state.options} method_delete_options={this.method_delete_options} />
-                <AddOptions />
+                <AddOptions method_add_options={this.method_add_options} />
             </div>
         );
     }
@@ -89,19 +101,29 @@ class Option extends React.Component {
 }
 
 class AddOptions extends React.Component {
+    constructor(props) {
+        super(props);
+        this.method_add_options = this.method_add_options.bind(this);
+
+        this.state = {
+            error: undefined
+        };
+    }
+
     method_add_options(e) {
         e.preventDefault();
-        console.log(e);
         const option = e.currentTarget.add_option.value.trim();
-
-        if (option) {
-            alert(option);
-        }
+        const error = this.props.method_add_options(option);
+        
+        this.setState(() => {
+            return { error };
+        });
     }
     
     render () {
         return (
             <div>
+                {this.state.error && <p>{this.state.error}</p>}
                 <form onSubmit={this.method_add_options}>
                     <input type="text" name="add_option" placeholder="e.g. Learn JavaScript" />
                     <button>Add Option</button>

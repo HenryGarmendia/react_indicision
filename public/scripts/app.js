@@ -20,9 +20,10 @@ var IndecisionWebApp = function (_React$Component) {
 
         _this.method_delete_options = _this.method_delete_options.bind(_this);
         _this.method_pick = _this.method_pick.bind(_this);
+        _this.method_add_options = _this.method_add_options.bind(_this);
 
         _this.state = {
-            options: ['First Item', 'Second Item', 'Third Item', 'Fourth Item']
+            options: []
         };
         return _this;
     }
@@ -39,10 +40,22 @@ var IndecisionWebApp = function (_React$Component) {
     }, {
         key: 'method_pick',
         value: function method_pick() {
+            var random_num = Math.floor(Math.random() * this.state.options.length);
+            var option = this.state.options[random_num];
+            alert(option);
+        }
+    }, {
+        key: 'method_add_options',
+        value: function method_add_options(option) {
+            if (!option) {
+                return 'Enter valid value to add item';
+            } else if (this.state.options.indexOf(option) > -1) {
+                return 'This option already exist';
+            }
             this.setState(function (prevState) {
-                var random_num = Math.floor(Math.random() * prevState.options.length);
-                var options = prevState.options[random_num];
-                alert(options);
+                return {
+                    options: prevState.options.concat(option)
+                };
             });
         }
     }, {
@@ -57,7 +70,7 @@ var IndecisionWebApp = function (_React$Component) {
                 React.createElement(Header, { title: app_title, sub_title: app_sub_title }),
                 React.createElement(Action, { has_options: this.state.options.length > 0, method_pick: this.method_pick }),
                 React.createElement(Options, { options: this.state.options, method_delete_options: this.method_delete_options }),
-                React.createElement(AddOptions, null)
+                React.createElement(AddOptions, { method_add_options: this.method_add_options })
             );
         }
     }]);
@@ -185,22 +198,29 @@ var Option = function (_React$Component5) {
 var AddOptions = function (_React$Component6) {
     _inherits(AddOptions, _React$Component6);
 
-    function AddOptions() {
+    function AddOptions(props) {
         _classCallCheck(this, AddOptions);
 
-        return _possibleConstructorReturn(this, (AddOptions.__proto__ || Object.getPrototypeOf(AddOptions)).apply(this, arguments));
+        var _this6 = _possibleConstructorReturn(this, (AddOptions.__proto__ || Object.getPrototypeOf(AddOptions)).call(this, props));
+
+        _this6.method_add_options = _this6.method_add_options.bind(_this6);
+
+        _this6.state = {
+            error: undefined
+        };
+        return _this6;
     }
 
     _createClass(AddOptions, [{
         key: 'method_add_options',
         value: function method_add_options(e) {
             e.preventDefault();
-            console.log(e);
             var option = e.currentTarget.add_option.value.trim();
+            var error = this.props.method_add_options(option);
 
-            if (option) {
-                alert(option);
-            }
+            this.setState(function () {
+                return { error: error };
+            });
         }
     }, {
         key: 'render',
@@ -208,6 +228,11 @@ var AddOptions = function (_React$Component6) {
             return React.createElement(
                 'div',
                 null,
+                this.state.error && React.createElement(
+                    'p',
+                    null,
+                    this.state.error
+                ),
                 React.createElement(
                     'form',
                     { onSubmit: this.method_add_options },
