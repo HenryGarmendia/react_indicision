@@ -8,14 +8,44 @@ class IndecisionWebApp extends React.Component {
         this.method_delete_options = this.method_delete_options.bind(this);
         this.method_pick = this.method_pick.bind(this);
         this.method_add_options = this.method_add_options.bind(this);
+        this.method_delete_option = this.method_delete_option.bind(this);
 
         this.state = {
             options: props.options
         }
     }
 
+    componentDidMount() {
+        try {
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+            if (options) {
+                this.setState(() => ({ options }));
+            }
+        } catch(e) {
+            // do nothing at all
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.options.length !== this.state.options.length) {
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
+        }
+    }
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount')
+    }
+
     method_delete_options() {
         this.setState(() => ({ options: [] }));
+    }
+
+    method_delete_option(option_to_remove) {
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => option_to_remove !== option)
+        }));
     }
 
     method_pick() {
@@ -43,7 +73,11 @@ class IndecisionWebApp extends React.Component {
             <div>
                 <Header sub_title={app_sub_title} />
                 <Action has_options={this.state.options.length > 0} method_pick={this.method_pick} />
-                <Options options={this.state.options} method_delete_options={this.method_delete_options} />
+                <Options 
+                    options={this.state.options} 
+                    method_delete_options={this.method_delete_options} 
+                    method_delete_option={this.method_delete_option}
+                />
                 <AddOptions method_add_options={this.method_add_options} />
             </div>
         );
@@ -79,8 +113,9 @@ const Options = (props) => {
     return (
         <div>
         <button onClick={props.method_delete_options}>Remove All</button>
+        {props.options.length === 0 && <p>Please add an option to get started!</p>}
             {
-                props.options.map((option) => <Option key={option} option_text={option}/>)
+                props.options.map((option) => <Option key={option} option_text={option} method_delete_option={props.method_delete_option}/>)
             }
         </div>
     );
@@ -89,7 +124,14 @@ const Options = (props) => {
 const Option = (props) => {
     return (
         <div>
-            <p>{props.option_text}</p>
+            {props.option_text}
+            <button 
+                onClick={(e) => {
+                    props.method_delete_option(props.option_text);
+                }}
+            >
+                Remove
+            </button>
         </div>
     );
 }
@@ -110,6 +152,9 @@ class AddOptions extends React.Component {
         const error = this.props.method_add_options(option);
 
         this.setState(() => ({ error }));
+        if (!error) {
+            e.target.elements.add_option.value = '';
+        }
     }
     
     render () {

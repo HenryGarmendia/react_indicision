@@ -21,6 +21,7 @@ var IndecisionWebApp = function (_React$Component) {
         _this.method_delete_options = _this.method_delete_options.bind(_this);
         _this.method_pick = _this.method_pick.bind(_this);
         _this.method_add_options = _this.method_add_options.bind(_this);
+        _this.method_delete_option = _this.method_delete_option.bind(_this);
 
         _this.state = {
             options: props.options
@@ -29,10 +30,49 @@ var IndecisionWebApp = function (_React$Component) {
     }
 
     _createClass(IndecisionWebApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            try {
+                var json = localStorage.getItem('options');
+                var options = JSON.parse(json);
+                if (options) {
+                    this.setState(function () {
+                        return { options: options };
+                    });
+                }
+            } catch (e) {
+                // do nothing at all
+            }
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            if (prevState.options.length !== this.state.options.length) {
+                var json = JSON.stringify(this.state.options);
+                localStorage.setItem('options', json);
+            }
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            console.log('componentWillUnmount');
+        }
+    }, {
         key: 'method_delete_options',
         value: function method_delete_options() {
             this.setState(function () {
                 return { options: [] };
+            });
+        }
+    }, {
+        key: 'method_delete_option',
+        value: function method_delete_option(option_to_remove) {
+            this.setState(function (prevState) {
+                return {
+                    options: prevState.options.filter(function (option) {
+                        return option_to_remove !== option;
+                    })
+                };
             });
         }
     }, {
@@ -67,7 +107,11 @@ var IndecisionWebApp = function (_React$Component) {
                 null,
                 React.createElement(Header, { sub_title: app_sub_title }),
                 React.createElement(Action, { has_options: this.state.options.length > 0, method_pick: this.method_pick }),
-                React.createElement(Options, { options: this.state.options, method_delete_options: this.method_delete_options }),
+                React.createElement(Options, {
+                    options: this.state.options,
+                    method_delete_options: this.method_delete_options,
+                    method_delete_option: this.method_delete_option
+                }),
                 React.createElement(AddOptions, { method_add_options: this.method_add_options })
             );
         }
@@ -122,8 +166,13 @@ var Options = function Options(props) {
             { onClick: props.method_delete_options },
             'Remove All'
         ),
+        props.options.length === 0 && React.createElement(
+            'p',
+            null,
+            'Please add an option to get started!'
+        ),
         props.options.map(function (option) {
-            return React.createElement(Option, { key: option, option_text: option });
+            return React.createElement(Option, { key: option, option_text: option, method_delete_option: props.method_delete_option });
         })
     );
 };
@@ -132,10 +181,15 @@ var Option = function Option(props) {
     return React.createElement(
         'div',
         null,
+        props.option_text,
         React.createElement(
-            'p',
-            null,
-            props.option_text
+            'button',
+            {
+                onClick: function onClick(e) {
+                    props.method_delete_option(props.option_text);
+                }
+            },
+            'Remove'
         )
     );
 };
@@ -166,6 +220,9 @@ var AddOptions = function (_React$Component2) {
             this.setState(function () {
                 return { error: error };
             });
+            if (!error) {
+                e.target.elements.add_option.value = '';
+            }
         }
     }, {
         key: 'render',
