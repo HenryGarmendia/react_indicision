@@ -15,11 +15,7 @@ class IndecisionWebApp extends React.Component {
     }
 
     method_delete_options() {
-        this.setState(() => {
-            return {
-                options: []
-            };
-        });
+        this.setState(() => ({ options: [] }));
     }
 
     method_pick() {
@@ -34,11 +30,10 @@ class IndecisionWebApp extends React.Component {
         } else if (this.state.options.indexOf(option) > -1) {
             return 'This option already exist';
         }
-        this.setState((prevState) => {
-            return {
-                options: prevState.options.concat(option)
-            };
-        });
+
+        this.setState((prevState) => ({ 
+            options: prevState.options.concat(option)
+        }));
     }
 
     render () {
@@ -113,10 +108,8 @@ class AddOptions extends React.Component {
         e.preventDefault();
         const option = e.currentTarget.add_option.value.trim();
         const error = this.props.method_add_options(option);
-        
-        this.setState(() => {
-            return { error };
-        });
+
+        this.setState(() => ({ error }));
     }
     
     render () {

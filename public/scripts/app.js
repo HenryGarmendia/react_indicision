@@ -32,9 +32,7 @@ var IndecisionWebApp = function (_React$Component) {
         key: 'method_delete_options',
         value: function method_delete_options() {
             this.setState(function () {
-                return {
-                    options: []
-                };
+                return { options: [] };
             });
         }
     }, {
@@ -52,6 +50,7 @@ var IndecisionWebApp = function (_React$Component) {
             } else if (this.state.options.indexOf(option) > -1) {
                 return 'This option already exist';
             }
+
             this.setState(function (prevState) {
                 return {
                     options: prevState.options.concat(option)
