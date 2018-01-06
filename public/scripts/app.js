@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -8,121 +8,140 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Counter = function (_React$Component) {
-    _inherits(Counter, _React$Component);
+console.log('app.js is running!');
 
-    function Counter(props) {
-        _classCallCheck(this, Counter);
+var Visible = function (_React$Component) {
+    _inherits(Visible, _React$Component);
 
-        var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
+    function Visible(props) {
+        _classCallCheck(this, Visible);
 
-        _this.add_one = _this.add_one.bind(_this);
-        _this.minus_one = _this.minus_one.bind(_this);
-        _this.reset = _this.reset.bind(_this);
+        var _this = _possibleConstructorReturn(this, (Visible.__proto__ || Object.getPrototypeOf(Visible)).call(this, props));
+
+        _this.handleToggle = _this.handleToggle.bind(_this);
 
         _this.state = {
-            count: 0
+            render_if: false
         };
+
         return _this;
     }
 
-    _createClass(Counter, [{
-        key: "add_one",
-        value: function add_one() {
-            this.setState(function (prevState) {
-                return {
-                    count: prevState.count + 1
-                };
-            });
-        }
-    }, {
-        key: "minus_one",
-        value: function minus_one() {
-            this.setState(function (prevState) {
-                return {
-                    count: prevState.count - 1
-                };
-            });
-        }
-    }, {
-        key: "reset",
-        value: function reset() {
+    _createClass(Visible, [{
+        key: 'handleToggle',
+        value: function handleToggle() {
+            var _this2 = this;
+
             this.setState(function () {
+                var swap_state = _this2.state.render_if === false ? true : false;
                 return {
-                    count: 0
+                    render_if: swap_state
                 };
             });
         }
     }, {
-        key: "render",
+        key: 'render',
         value: function render() {
             return React.createElement(
-                "div",
+                'div',
                 null,
                 React.createElement(
-                    "h1",
+                    'h1',
                     null,
-                    "Count: ",
-                    this.state.count
+                    'Visibility Toggle'
                 ),
                 React.createElement(
-                    "button",
-                    { onClick: this.add_one },
-                    React.createElement("i", { className: "fa fa-plus", "aria-hidden": "true" }),
-                    " 1"
+                    'button',
+                    { onClick: this.handleToggle },
+                    this.state.render_if ? 'Hide details' : 'Show details'
                 ),
-                React.createElement(
-                    "button",
-                    { onClick: this.minus_one },
-                    React.createElement("i", { className: "fa fa-minus", "aria-hidden": "true" }),
-                    " 1"
-                ),
-                React.createElement(
-                    "button",
-                    { onClick: this.reset },
-                    React.createElement("i", { className: "fa fa-refresh", "aria-hidden": "true" }),
-                    " Reset"
+                this.state.render_if && React.createElement(
+                    'p',
+                    null,
+                    'Hey, you can see the text again!'
                 )
             );
         }
     }]);
 
-    return Counter;
+    return Visible;
 }(React.Component);
 
-;
+ReactDOM.render(React.createElement(Visible, null), document.getElementById('react_container'));
 
-ReactDOM.render(React.createElement(Counter, null), document.getElementById('react_container'));
+/* 
+    VER #2
+*/
 
-// let count = 0;
-// const add_one = () => {
-//     count++;
-//     render_counter_app();
+// console.log('app.js is running!');
+
+// class Visible extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.handleToggle = this.handleToggle.bind(this);
+
+//         this.state = {
+//             btn: 'Show text',
+//             text: ''
+//         };
+
+//     }
+
+//     handleToggle() {
+//         this.setState(() => {
+//             const is_text = (this.state.text === '') ? <p>Hey, you can see the text again!</p> : '';
+//             const is_btn = (this.state.btn === 'Show text') ? 'Hide text' : 'Show text';
+//             return {
+//                 text: is_text,
+//                 btn: is_btn
+//             };
+//         });
+//     }
+
+//     render() {
+//         return (
+//             <div>
+//                 <h1>Visibility Toggle</h1>
+//                 <button onClick={this.handleToggle}>{this.state.btn}</button>
+//                 {this.state.text}
+//             </div>
+//         );
+//     };
+// }
+
+// ReactDOM.render(<Visible />, document.getElementById('react_container'));
+
+/* 
+    ORIGINAL VERSION
+*/
+
+// let content = '';
+// let btn_text = 'Show details';
+
+// const toggle_change = () => {
+//     if (content === '') {
+//         content = <p>Hey, you can see the text now!</p>;
+//         btn_text = 'Hide details';
+//         render_visible();
+//     } else {
+//         content = '';
+//         btn_text = 'Show details';
+//         render_visible();
+//     }
 // };
 
-// const minus_one = () => {
-//     count--;
-//     render_counter_app();
-// };
+// const app_root = document.getElementById('react_container');
 
-// const reset = () => {
-//     count = 0;
-//     render_counter_app();
-// };
-
-// const app_roor = document.getElementById('react_container');
-
-// const render_counter_app = () => {
-//     const templateTwo = (
+// const render_visible = () => {
+//     const output_jsx = (
 //         <div>
-//         <h1>Count: {count}</h1>
-//         <button onClick={add_one}><i className="fa fa-plus" aria-hidden="true"></i> 1</button>
-//         <button onClick={minus_one}><i className="fa fa-minus" aria-hidden="true"></i> 1</button>
-//         <button onClick={reset}><i className="fa fa-refresh" aria-hidden="true"></i> Reset</button>
+//             <h1>Visibility Toggle</h1>
+//             <button onClick={toggle_change}>{btn_text}</button>
+//             {content}
 //         </div>
 //     );
 
-//     ReactDOM.render(templateTwo, app_roor);
+//     ReactDOM.render(output_jsx, app_root);
 // };
 
-// render_counter_app();
+// render_visible();
