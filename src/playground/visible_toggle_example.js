@@ -52,9 +52,9 @@ ReactDOM.render(<Visible />, document.getElementById('react_container'));
 //     }
 
 //     handleToggle() {
-//         this.setState(() => {
-//             const is_text = (this.state.text === '') ? <p>Hey, you can see the text again!</p> : '';
-//             const is_btn = (this.state.btn === 'Show text') ? 'Hide text' : 'Show text';
+//         this.setState((prevState) => {
+//             const is_text = (prevState.text === '') ? <p>Hey, you can see the text again!</p> : '';
+//             const is_btn = (prevState.btn === 'Show text') ? 'Hide text' : 'Show text';
 //             return {
 //                 text: is_text,
 //                 btn: is_btn
