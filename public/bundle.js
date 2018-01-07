@@ -966,6 +966,10 @@ var _action = __webpack_require__(30);
 
 var _action2 = _interopRequireDefault(_action);
 
+var _header = __webpack_require__(31);
+
+var _header2 = _interopRequireDefault(_header);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1072,7 +1076,7 @@ var IndecisionWebApp = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(Header, { sub_title: app_sub_title }),
+                _react2.default.createElement(_header2.default, { sub_title: app_sub_title }),
                 _react2.default.createElement(_action2.default, { has_options: this.state.options.length > 0, method_pick: this.method_pick }),
                 _react2.default.createElement(_options2.default, {
                     options: this.state.options,
@@ -1086,27 +1090,6 @@ var IndecisionWebApp = function (_React$Component) {
 
     return IndecisionWebApp;
 }(_react2.default.Component);
-
-var Header = function Header(props) {
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-            'h1',
-            null,
-            props.app_title
-        ),
-        props.sub_title && _react2.default.createElement(
-            'p',
-            null,
-            props.sub_title
-        )
-    );
-};
-
-Header.defaultProps = {
-    app_title: 'Indecision Web-App'
-};
 
 _reactDom2.default.render(_react2.default.createElement(IndecisionWebApp, null), document.getElementById('react_container'));
 
@@ -18608,6 +18591,46 @@ var Action = function Action(props) {
 };
 
 exports.default = Action;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Header = function Header(props) {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'h1',
+            null,
+            props.app_title
+        ),
+        props.sub_title && _react2.default.createElement(
+            'p',
+            null,
+            props.sub_title
+        )
+    );
+};
+
+Header.defaultProps = {
+    app_title: 'Indecision Web-App'
+};
+
+exports.default = Header;
 
 /***/ })
 /******/ ]);

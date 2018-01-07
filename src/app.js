@@ -4,6 +4,7 @@ import AddOptions from './components/add_options'
 import Option from './components/option'
 import Options from './components/options'
 import Action from './components/action'
+import Header from './components/header'
 
 "use strict";
 console.log('app.js is running live!');
@@ -90,18 +91,5 @@ class IndecisionWebApp extends React.Component {
         );
     }
 }
-
-const Header = (props) => {
-    return (
-        <div>
-            <h1>{props.app_title}</h1>
-            {props.sub_title && <p>{props.sub_title}</p>}
-        </div>
-    );
-}
-
-Header.defaultProps = {
-    app_title: 'Indecision Web-App'
-};
 
 ReactDOM.render(<IndecisionWebApp />, document.getElementById('react_container'));
