@@ -962,6 +962,10 @@ var _options = __webpack_require__(29);
 
 var _options2 = _interopRequireDefault(_options);
 
+var _action = __webpack_require__(30);
+
+var _action2 = _interopRequireDefault(_action);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1069,7 +1073,7 @@ var IndecisionWebApp = function (_React$Component) {
                 'div',
                 null,
                 _react2.default.createElement(Header, { sub_title: app_sub_title }),
-                _react2.default.createElement(Action, { has_options: this.state.options.length > 0, method_pick: this.method_pick }),
+                _react2.default.createElement(_action2.default, { has_options: this.state.options.length > 0, method_pick: this.method_pick }),
                 _react2.default.createElement(_options2.default, {
                     options: this.state.options,
                     method_delete_options: this.method_delete_options,
@@ -1102,18 +1106,6 @@ var Header = function Header(props) {
 
 Header.defaultProps = {
     app_title: 'Indecision Web-App'
-};
-
-var Action = function Action(props) {
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-            'button',
-            { onClick: props.method_pick, disabled: !props.has_options },
-            'What should I do?'
-        )
-    );
 };
 
 _reactDom2.default.render(_react2.default.createElement(IndecisionWebApp, null), document.getElementById('react_container'));
@@ -18585,6 +18577,37 @@ var Options = function Options(props) {
 };
 
 exports.default = Options;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Action = function Action(props) {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'button',
+            { onClick: props.method_pick, disabled: !props.has_options },
+            'What should I do?'
+        )
+    );
+};
+
+exports.default = Action;
 
 /***/ })
 /******/ ]);

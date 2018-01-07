@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import AddOptions from './components/add_options'
 import Option from './components/option'
 import Options from './components/options'
+import Action from './components/action'
 
 "use strict";
 console.log('app.js is running live!');
@@ -102,13 +103,5 @@ const Header = (props) => {
 Header.defaultProps = {
     app_title: 'Indecision Web-App'
 };
-
-const Action = (props) => {
-    return (
-        <div>
-            <button onClick={props.method_pick} disabled={!props.has_options}>What should I do?</button>
-        </div>
-    );
-}
 
 ReactDOM.render(<IndecisionWebApp />, document.getElementById('react_container'));
