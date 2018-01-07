@@ -1,4 +1,6 @@
-import export_name from './utils.js';
-console.log('app.js is running!');
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-export_name('Henry');
+const template = <p>THIS IS JSX FROM WEBPACK</p>
+
+ReactDOM.render(template, document.getElementById('react_container'));
