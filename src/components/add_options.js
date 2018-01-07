@@ -14,7 +14,7 @@ export default class AddOptions extends React.Component {
         if (!error) {
             e.target.elements.add_option.value = '';
         }
-    }
+    };
     
     render () {
         return (
