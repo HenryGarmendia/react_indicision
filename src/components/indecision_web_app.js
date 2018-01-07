@@ -3,10 +3,12 @@ import AddOptions from './add_options'
 import Options from './options'
 import Action from './action'
 import Header from './header'
+import OptionModal from './option_modal'
 
 export default class IndecisionWebApp extends React.Component {
     state = {
-        options: []
+        options: [],
+        selectedOption: undefined
     };
 
     method_delete_options = () => {
@@ -21,8 +23,10 @@ export default class IndecisionWebApp extends React.Component {
 
     method_pick = () => {
         const random_num = Math.floor(Math.random() * this.state.options.length);
-        const option = this.state.options[random_num]
-        alert(option);
+        const option = this.state.options[random_num];
+        this.setState(() => ({
+            selectedOption: option
+        }));
     }
 
     method_add_options = (option) => {
@@ -73,6 +77,7 @@ export default class IndecisionWebApp extends React.Component {
                     method_delete_option={this.method_delete_option}
                 />
                 <AddOptions method_add_options={this.method_add_options} />
+                <OptionModal selectedOption={this.state.selectedOption} />
             </div>
         );
     }
