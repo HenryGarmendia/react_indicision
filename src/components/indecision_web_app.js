@@ -5,17 +5,36 @@ import Action from './action'
 import Header from './header'
 
 export default class IndecisionWebApp extends React.Component {
-    constructor(props) {
-        super(props);
+    state = {
+        options: []
+    };
 
-        this.method_delete_options = this.method_delete_options.bind(this);
-        this.method_pick = this.method_pick.bind(this);
-        this.method_add_options = this.method_add_options.bind(this);
-        this.method_delete_option = this.method_delete_option.bind(this);
+    method_delete_options = () => {
+        this.setState(() => ({ options: [] }));
+    }
 
-        this.state = {
-            options: []
+    method_delete_option = (option_to_remove) => {
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => option_to_remove !== option)
+        }));
+    }
+
+    method_pick = () => {
+        const random_num = Math.floor(Math.random() * this.state.options.length);
+        const option = this.state.options[random_num]
+        alert(option);
+    }
+
+    method_add_options = (option) => {
+        if (!option) {
+            return 'Enter valid value to add item';
+        } else if (this.state.options.indexOf(option) > -1) {
+            return 'This option already exist';
         }
+
+        this.setState((prevState) => ({ 
+            options: prevState.options.concat(option)
+        }));
     }
 
     componentDidMount() {
@@ -39,34 +58,6 @@ export default class IndecisionWebApp extends React.Component {
 
     componentWillUnmount() {
         console.log('componentWillUnmount')
-    }
-
-    method_delete_options() {
-        this.setState(() => ({ options: [] }));
-    }
-
-    method_delete_option(option_to_remove) {
-        this.setState((prevState) => ({
-            options: prevState.options.filter((option) => option_to_remove !== option)
-        }));
-    }
-
-    method_pick() {
-        const random_num = Math.floor(Math.random() * this.state.options.length);
-        const option = this.state.options[random_num]
-        alert(option);
-    }
-
-    method_add_options(option) {
-        if (!option) {
-            return 'Enter valid value to add item';
-        } else if (this.state.options.indexOf(option) > -1) {
-            return 'This option already exist';
-        }
-
-        this.setState((prevState) => ({ 
-            options: prevState.options.concat(option)
-        }));
     }
 
     render () {

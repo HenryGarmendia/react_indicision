@@ -1,16 +1,11 @@
 import React from 'react'
 
 export default class AddOptions extends React.Component {
-    constructor(props) {
-        super(props);
-        this.method_add_options = this.method_add_options.bind(this);
+    state = {
+        error: undefined
+    };
 
-        this.state = {
-            error: undefined
-        };
-    }
-
-    method_add_options(e) {
+    method_add_options = (e) => {
         e.preventDefault();
         const option = e.currentTarget.add_option.value.trim();
         const error = this.props.method_add_options(option);
