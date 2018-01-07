@@ -954,6 +954,14 @@ var _add_options = __webpack_require__(27);
 
 var _add_options2 = _interopRequireDefault(_add_options);
 
+var _option = __webpack_require__(28);
+
+var _option2 = _interopRequireDefault(_option);
+
+var _options = __webpack_require__(29);
+
+var _options2 = _interopRequireDefault(_options);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1062,7 +1070,7 @@ var IndecisionWebApp = function (_React$Component) {
                 null,
                 _react2.default.createElement(Header, { sub_title: app_sub_title }),
                 _react2.default.createElement(Action, { has_options: this.state.options.length > 0, method_pick: this.method_pick }),
-                _react2.default.createElement(Options, {
+                _react2.default.createElement(_options2.default, {
                     options: this.state.options,
                     method_delete_options: this.method_delete_options,
                     method_delete_option: this.method_delete_option
@@ -1104,43 +1112,6 @@ var Action = function Action(props) {
             'button',
             { onClick: props.method_pick, disabled: !props.has_options },
             'What should I do?'
-        )
-    );
-};
-
-var Options = function Options(props) {
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-            'button',
-            { onClick: props.method_delete_options },
-            'Remove All'
-        ),
-        props.options.length === 0 && _react2.default.createElement(
-            'p',
-            null,
-            'Please add an option to get started!'
-        ),
-        props.options.map(function (option) {
-            return _react2.default.createElement(Option, { key: option, option_text: option, method_delete_option: props.method_delete_option });
-        })
-    );
-};
-
-var Option = function Option(props) {
-    return _react2.default.createElement(
-        'div',
-        null,
-        props.option_text,
-        _react2.default.createElement(
-            'button',
-            {
-                onClick: function onClick(e) {
-                    props.method_delete_option(props.option_text);
-                }
-            },
-            'Remove'
         )
     );
 };
@@ -18539,6 +18510,81 @@ var AddOptions = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = AddOptions;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Option = function Option(props) {
+    return _react2.default.createElement(
+        'div',
+        null,
+        props.option_text,
+        _react2.default.createElement(
+            'button',
+            {
+                onClick: function onClick(e) {
+                    props.method_delete_option(props.option_text);
+                }
+            },
+            'Remove'
+        )
+    );
+};
+
+exports.default = Option;
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Options = function Options(props) {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'button',
+            { onClick: props.method_delete_options },
+            'Remove All'
+        ),
+        props.options.length === 0 && _react2.default.createElement(
+            'p',
+            null,
+            'Please add an option to get started!'
+        ),
+        props.options.map(function (option) {
+            return _react2.default.createElement(Option, { key: option, option_text: option, method_delete_option: props.method_delete_option });
+        })
+    );
+};
+
+exports.default = Options;
 
 /***/ })
 /******/ ]);

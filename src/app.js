@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import AddOptions from './components/add_options'
+import Option from './components/option'
+import Options from './components/options'
 
 "use strict";
 console.log('app.js is running live!');
@@ -105,33 +107,6 @@ const Action = (props) => {
     return (
         <div>
             <button onClick={props.method_pick} disabled={!props.has_options}>What should I do?</button>
-        </div>
-    );
-}
-
-const Options = (props) => {
-    return (
-        <div>
-        <button onClick={props.method_delete_options}>Remove All</button>
-        {props.options.length === 0 && <p>Please add an option to get started!</p>}
-            {
-                props.options.map((option) => <Option key={option} option_text={option} method_delete_option={props.method_delete_option}/>)
-            }
-        </div>
-    );
-}
-
-const Option = (props) => {
-    return (
-        <div>
-            {props.option_text}
-            <button 
-                onClick={(e) => {
-                    props.method_delete_option(props.option_text);
-                }}
-            >
-                Remove
-            </button>
         </div>
     );
 }
