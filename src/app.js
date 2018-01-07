@@ -11,7 +11,7 @@ class IndecisionWebApp extends React.Component {
         this.method_delete_option = this.method_delete_option.bind(this);
 
         this.state = {
-            options: props.options
+            options: []
         }
     }
 
@@ -82,10 +82,6 @@ class IndecisionWebApp extends React.Component {
             </div>
         );
     }
-}
-
-IndecisionWebApp.defaultProps = {
-    options: []
 }
 
 const Header = (props) => {
