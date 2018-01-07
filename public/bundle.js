@@ -65,9 +65,28 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_js__ = __webpack_require__(1);
 
 console.log('app.js is running!');
+
+Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* default */])('Henry');
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+console.log('utils.js is running!');
+
+const export_name = (name) => console.log(`You are the greatest ${name}`)
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (export_name);
 
 /***/ })
 /******/ ]);
