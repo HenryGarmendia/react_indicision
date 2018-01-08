@@ -13,13 +13,13 @@ export default class IndecisionWebApp extends React.Component {
 
     method_delete_options = () => {
         this.setState(() => ({ options: [] }));
-    }
+    };
 
     method_delete_option = (option_to_remove) => {
         this.setState((prevState) => ({
             options: prevState.options.filter((option) => option_to_remove !== option)
         }));
-    }
+    };
 
     method_pick = () => {
         const random_num = Math.floor(Math.random() * this.state.options.length);
@@ -27,7 +27,7 @@ export default class IndecisionWebApp extends React.Component {
         this.setState(() => ({
             selectedOption: option
         }));
-    }
+    };
 
     method_add_options = (option) => {
         if (!option) {
@@ -39,7 +39,13 @@ export default class IndecisionWebApp extends React.Component {
         this.setState((prevState) => ({ 
             options: prevState.options.concat(option)
         }));
-    }
+    };
+
+    method_clear_selected = () => {
+        this.setState(() => ({
+            selectedOption: undefined
+        }));
+    };
 
     componentDidMount() {
         try {
@@ -51,18 +57,18 @@ export default class IndecisionWebApp extends React.Component {
         } catch(e) {
             // do nothing at all
         }
-    }
+    };
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.options.length !== this.state.options.length) {
             const json = JSON.stringify(this.state.options);
             localStorage.setItem('options', json);
         }
-    }
+    };
 
     componentWillUnmount() {
         console.log('componentWillUnmount')
-    }
+    };
 
     render () {
         const app_sub_title = 'Put your life decision in the logic of a computer.';
@@ -77,8 +83,11 @@ export default class IndecisionWebApp extends React.Component {
                     method_delete_option={this.method_delete_option}
                 />
                 <AddOptions method_add_options={this.method_add_options} />
-                <OptionModal selectedOption={this.state.selectedOption} />
+                <OptionModal 
+                    selectedOption={this.state.selectedOption}
+                    method_clear_selected={this.method_clear_selected}
+                />
             </div>
         );
-    }
+    };
 }
