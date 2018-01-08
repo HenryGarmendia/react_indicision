@@ -71,18 +71,20 @@ export default class IndecisionWebApp extends React.Component {
     };
 
     render () {
-        const app_sub_title = 'Put your life decision in the logic of a computer.';
+        const app_sub_title = 'Put your life decisions in the logic of a computer.';
 
         return (
             <div>
                 <Header sub_title={app_sub_title} />
-                <Action has_options={this.state.options.length > 0} method_pick={this.method_pick} />
-                <Options 
+                <div className="container">
+                    <Action has_options={this.state.options.length > 0} method_pick={this.method_pick} />
+                    <Options 
                     options={this.state.options} 
                     method_delete_options={this.method_delete_options} 
                     method_delete_option={this.method_delete_option}
-                />
-                <AddOptions method_add_options={this.method_add_options} />
+                    />
+                    <AddOptions method_add_options={this.method_add_options} />
+                </div>
                 <OptionModal 
                     selectedOption={this.state.selectedOption}
                     method_clear_selected={this.method_clear_selected}
