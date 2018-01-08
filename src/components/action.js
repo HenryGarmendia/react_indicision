@@ -1,11 +1,12 @@
 import React from 'react';
 
-const Action = (props) => {
-    return (
-        <div>
-            <button onClick={props.method_pick} disabled={!props.has_options}>What should I do?</button>
-        </div>
-    );
-}
+const Action = (props) => (
+    <div>
+        <button 
+            onClick={props.method_pick} 
+            disabled={!props.has_options}>Randomize your options
+        </button>
+    </div>
+);
 
 export default Action
