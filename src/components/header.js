@@ -2,8 +2,10 @@ import React from 'react';
 
 const Header = (props) => (
     <div className="header">
-        <h1>{props.app_title}</h1>
-        {props.sub_title && <p>{props.sub_title}</p>}
+        <div>
+            <h1 className="header__title">{props.app_title}</h1>
+            {props.sub_title && <p className="header__subtitle">{props.sub_title}</p>}
+        </div>
     </div>
 );
 
