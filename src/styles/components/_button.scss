@@ -1,0 +1,34 @@
+// action button
+.big_button {
+    background: $purple;
+    border: none;
+    border-bottom: .6rem solid darken($purple, 10%);
+    color: white;
+    font-size: $l_size;
+    font-weight: bold;
+    margin-bottom: $xl_size;
+    outline: none;
+    padding: 2.4rem;
+    width: 100%;
+}
+
+.big_button:disabled {
+    opacity: .5;
+}
+
+// other button
+.button {
+    background: $purple;
+    border: none;
+    border-bottom: .3rem solid darken($purple, 10%);
+    color: white;
+    font-weight: 500;
+    padding: $s_size;
+}
+
+.button--link {
+    background: none;
+    border: none;
+    color: $off_white;
+    padding: 0;
+}
