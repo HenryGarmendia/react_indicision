@@ -9,7 +9,7 @@ const Options = (props) => (
             className="button button--link" 
             onClick={props.method_delete_options}
             >
-            Remove All
+            Remove All <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
         </div>
         {props.options.length === 0 && <p className="widget__message">Please add an option to get started!</p>}

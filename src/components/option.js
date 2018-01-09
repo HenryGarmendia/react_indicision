@@ -9,7 +9,7 @@ const Option = (props) => (
                 props.method_delete_option(props.option_text);
             }}
         >
-            Remove
+        Remove <i class="fa fa-times" aria-hidden="true"></i> 
         </button>
     </div>
 );
