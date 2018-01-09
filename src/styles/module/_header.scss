@@ -1,7 +1,7 @@
 .header {
     background: $off_black;
     color: white;
-    margin-bottom: $xl_size;
+    margin-bottom: $m_size;
     padding: $m_size 0;
     
     &__title {
@@ -14,5 +14,11 @@
         font-size: $m_size;
         font-weight: 300;
         margin: 0;
+    }
+}
+
+@media (min-width: $desktop_breakpoint) {
+    .header {
+        margin: 0 0 $xl_size 0;
     }
 }

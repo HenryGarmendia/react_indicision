@@ -19,10 +19,10 @@ export default class AddOptions extends React.Component {
     render () {
         return (
             <div>
-                {this.state.error && <p className="add_option_error"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {this.state.error}</p>}
+                {this.state.error && <p className="add_option_error"><i className="fa fa-exclamation-triangle" aria-hidden="true"></i> {this.state.error}</p>}
                 <form className="add_option" onSubmit={this.method_add_options}>
                     <input className="add_option__input" type="text" name="add_option" placeholder="e.g. Learn JavaScript" />
-                    <button className="button"><i class="fa fa-plus" aria-hidden="true"></i> Add Option</button>
+                    <button className="button"><i className="fa fa-plus" aria-hidden="true"></i> Add Option</button>
                 </form>
             </div>
         );
