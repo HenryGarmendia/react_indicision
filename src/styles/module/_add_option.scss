@@ -1,0 +1,23 @@
+// add option error
+.add_option_error {
+    color: $off_white;
+    font-style: italic;
+    margin: $m_size 0 0 0;
+    padding: 0 $m_size;
+}
+
+// add option
+.add_option {
+    display: flex;
+    padding: $m_size;
+
+    &__input {
+        background: $dark_blue;
+        border: none;
+        border-bottom: .3rem solid darken($dark_blue, 10%);
+        color: $off_white;
+        flex-grow: 1;
+        margin-right: $s_size;
+        padding-left: $s_size;
+    }
+}
