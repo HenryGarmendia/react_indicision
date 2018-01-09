@@ -10,11 +10,12 @@
     outline: none;
     padding: 2.4rem;
     width: 100%;
+    
+    &:disabled {
+        opacity: .5;
+    }
 }
 
-.big_button:disabled {
-    opacity: .5;
-}
 
 // other button
 .button {
@@ -24,12 +25,12 @@
     color: white;
     font-weight: 500;
     padding: $s_size;
-}
-
-.button--link {
-    background: none;
-    border: none;
-    color: $off_white;
-    outline: none;
-    padding: 0;
+    
+    &--link {
+        background: none;
+        border: none;
+        color: $off_white;
+        outline: none;
+        padding: 0;
+    }
 }
