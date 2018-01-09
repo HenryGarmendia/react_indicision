@@ -1,0 +1,12 @@
+// widget header
+.widget_header {
+    background: $blue;
+    color: $off_white;
+    display: flex;
+    justify-content: space-between;
+    padding: $m_size;
+}
+
+.widget_header__h3 {
+    margin: 0;
+}
