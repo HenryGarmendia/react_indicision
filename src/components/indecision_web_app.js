@@ -78,12 +78,14 @@ export default class IndecisionWebApp extends React.Component {
                 <Header sub_title={app_sub_title} />
                 <div className="container">
                     <Action has_options={this.state.options.length > 0} method_pick={this.method_pick} />
-                    <Options 
-                    options={this.state.options} 
-                    method_delete_options={this.method_delete_options} 
-                    method_delete_option={this.method_delete_option}
-                    />
-                    <AddOptions method_add_options={this.method_add_options} />
+                    <div className="widget">
+                        <Options 
+                        options={this.state.options} 
+                        method_delete_options={this.method_delete_options} 
+                        method_delete_option={this.method_delete_option}
+                        />
+                        <AddOptions method_add_options={this.method_add_options} />
+                    </div>
                 </div>
                 <OptionModal 
                     selectedOption={this.state.selectedOption}

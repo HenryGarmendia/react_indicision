@@ -1,3 +1,17 @@
+// widget
+.widget {
+    background: $light_blue;
+    margin-bottom: $xl_size;
+    
+    &__message {
+        border-bottom: 1px solid lighten($light_blue, 10%);
+        color: $off_white;
+        margin: 0;
+        padding: $l_size;
+        text-align: center;
+    }
+}
+
 // widget header
 .widget_header {
     background: $blue;
@@ -5,8 +19,8 @@
     display: flex;
     justify-content: space-between;
     padding: $m_size;
-}
-
-.widget_header__h3 {
-    margin: 0;
+    
+    &__h3 {
+        margin: 0;
+    }
 }
